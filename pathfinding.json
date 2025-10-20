@@ -22,7 +22,7 @@
     "name": "Pathfinding",
     "description": "",
     "author": "",
-    "windowWidth": 300,
+    "windowWidth": 320,
     "windowHeight": 240,
     "latestCompilationDirectory": "",
     "maxFPS": 60,
@@ -170,6 +170,22 @@
         "name": "NewSprite8",
         "smoothed": true,
         "userAdded": false
+      },
+      {
+        "file": "assets/New image.png",
+        "kind": "image",
+        "metadata": "{\"extension\":\".png\",\"pskl\":{}}",
+        "name": "New image",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "file": "assets/New image2.png",
+        "kind": "image",
+        "metadata": "{\"extension\":\".png\",\"pskl\":{}}",
+        "name": "New image2",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -201,7 +217,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 1,
+        "zoomFactor": 1.0615432371589926,
         "windowMask": false,
         "selectedLayer": ""
       },
@@ -220,28 +236,84 @@
           "height": 0,
           "keepRatio": true,
           "layer": "",
-          "name": "Grid",
-          "persistentUuid": "d0b72028-d935-4220-9621-51eb5ad8eca0",
+          "name": "Player",
+          "persistentUuid": "2950e447-e7f7-4c4a-97b8-ade6b711f890",
           "width": 0,
-          "x": 0,
-          "y": 0,
-          "zOrder": 1,
+          "x": 218,
+          "y": 42,
+          "zOrder": 2,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
         },
         {
           "angle": 0,
-          "customSize": false,
-          "height": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 53,
           "keepRatio": true,
           "layer": "",
-          "name": "Player",
-          "persistentUuid": "2950e447-e7f7-4c4a-97b8-ade6b711f890",
-          "width": 0,
-          "x": 22,
-          "y": 10,
-          "zOrder": 2,
+          "name": "Wall",
+          "persistentUuid": "aa62474d-930c-46cd-927f-1f5f0341e694",
+          "width": 8,
+          "x": -45,
+          "y": 14,
+          "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 8,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Wall",
+          "persistentUuid": "e7474a0c-4d05-4f09-ad29-aa5a42ecc8af",
+          "width": 69,
+          "x": 54,
+          "y": 149,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 0,
+          "height": 168,
+          "layer": "",
+          "name": "Sfondo",
+          "persistentUuid": "9f44ca41-bcaf-4815-b1f3-1c6cf325373f",
+          "width": 1680,
+          "x": -1360,
+          "y": 0,
+          "zOrder": 0,
+          "numberProperties": [],
+          "stringProperties": [
+            {
+              "name": "tilemap",
+              "value": "{\"tileWidth\":168,\"tileHeight\":168,\"dimX\":10,\"dimY\":1,\"layers\":[{\"id\":0,\"alpha\":1,\"tiles\":[[0,0,0,0,0,0,0,0,0,0]]}]}"
+            }
+          ],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 18,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Wall",
+          "persistentUuid": "c2cd40d7-4359-4b5d-a7cc-ca0fc7172dd8",
+          "width": 469,
+          "x": -149,
+          "y": -4,
+          "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -611,6 +683,21 @@
               ]
             }
           ]
+        },
+        {
+          "assetStoreId": "",
+          "name": "Sfondo",
+          "type": "TileMap::SimpleTileMap",
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "content": {
+            "atlasImage": "New image2",
+            "rowCount": 1,
+            "columnCount": 1,
+            "tileSize": 168,
+            "tilesWithHitBox": ""
+          }
         }
       ],
       "objectsFolderStructure": {
@@ -633,10 +720,31 @@
           },
           {
             "objectName": "Grid"
+          },
+          {
+            "objectName": "Sfondo"
           }
         ]
       },
       "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "CentreCamera"
+              },
+              "parameters": [
+                "",
+                "Player",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        },
         {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
@@ -796,11 +904,6 @@
             }
           ],
           "actions": []
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": []
         }
       ],
       "layers": [
@@ -830,59 +933,6 @@
               "width": 0
             }
           ],
-          "effects": [
-            {
-              "effectType": "Scene3D::HemisphereLight",
-              "name": "3D Ambient Hemisphere Light",
-              "doubleParameters": {
-                "elevation": 40,
-                "intensity": 0.33,
-                "rotation": 300
-              },
-              "stringParameters": {
-                "groundColor": "127;127;127",
-                "skyColor": "255;255;255",
-                "top": "Z+"
-              },
-              "booleanParameters": {}
-            },
-            {
-              "effectType": "Scene3D::DirectionalLight",
-              "name": "3D Sun Light",
-              "doubleParameters": {
-                "distanceFromCamera": 1500,
-                "elevation": 40,
-                "frustumSize": 4000,
-                "intensity": 0.75,
-                "minimumShadowBias": 0,
-                "rotation": 300
-              },
-              "stringParameters": {
-                "color": "255;255;255",
-                "shadowQuality": "medium",
-                "top": "Z+"
-              },
-              "booleanParameters": {
-                "isCastingShadow": true
-              }
-            }
-          ]
-        },
-        {
-          "ambientLightColorB": 200,
-          "ambientLightColorG": 200,
-          "ambientLightColorR": 200,
-          "camera3DFarPlaneDistance": 10000,
-          "camera3DFieldOfView": 45,
-          "camera3DNearPlaneDistance": 3,
-          "cameraType": "",
-          "followBaseLayerCamera": false,
-          "isLightingLayer": false,
-          "isLocked": false,
-          "name": "dimensione matrice",
-          "renderingType": "",
-          "visibility": true,
-          "cameras": [],
           "effects": [
             {
               "effectType": "Scene3D::HemisphereLight",
@@ -1178,9 +1228,24 @@
             "  return target;",
             "}",
             "",
-            "",
-            "// === CONFIGURATION ===",
             "const cellSize = 2;",
+            "",
+            "const layer = runtimeScene.getLayer(\"Layer base\"); // il layer seguito dalla telecamera",
+            "const camX = layer.getCameraX();",
+            "const camY = layer.getCameraY();",
+            "const camWidth = layer.layer.getCameraWidth();",
+            "const camHeight = layer.getCameraHeight();",
+            "",
+            "const mincamX = camX - Math.floor(camWidth / 2);",
+            "const maxcamX = camX + Math.floor(camWidth / 2);",
+            "const mincamY = camY - Math.floor(camHeight / 2);",
+            "const maxcamY = camY + Math.floor(camHeight / 2);",
+            "",
+            "//alert(mincamY);",
+            "",
+            "//alert(layer.getCameraWidth());",
+            "",
+            "//alert('camX: ' +  camX + ' - camY: ' + camY);",
             "",
             "const mouseX = runtimeScene.getGame().getInputManager().getMouseX();",
             "const mouseY = runtimeScene.getGame().getInputManager().getMouseY();",
@@ -1188,21 +1253,13 @@
             "",
             "// === Create a target marker ===",
             "const target = runtimeScene.createObject(\"Target\");",
-            "target.setPosition(goal[0] * cellSize, goal[1] * cellSize);",
+            "//target.setPosition(mouseX, mouseY);",
+            "target.setPosition(mincamX + goal[0] * cellSize, mincamY + goal[1] * cellSize);",
             "target.setZOrder(1000);",
-            "// === Retrieve the map ===",
-            "",
-            "const map = runtimeScene.getObjects(\"Grid\")[0];",
-            "if (!map) return;",
-            "",
-            "const mapX = map.getX();",
-            "const mapY = map.getY();",
-            "const mapWidth = map.getWidth();",
-            "const mapHeight = map.getHeight();",
             "",
             "// === Build grid (2D numeric matrix) ===",
-            "const cols = Math.floor(mapWidth / cellSize);",
-            "const rows = Math.floor(mapHeight / cellSize);",
+            "const cols = Math.floor(camWidth / cellSize);",
+            "const rows = Math.floor(camHeight() / cellSize);",
             "const grid = Array.from({ length: rows }, () => new Array(cols).fill(0));",
             "",
             "// === Mark walls as blocked ===",
@@ -1217,16 +1274,16 @@
             "",
             "  // Ignore walls outside map",
             "  if (",
-            "    wx + wWidth < mapX ||",
-            "    wy + wHeight < mapY ||",
-            "    wx > mapX + mapWidth ||",
-            "    wy > mapY + mapHeight",
+            "    wx + wWidth < mincamX ||",
+            "    wy + wHeight < mincamY ||",
+            "    wx > mincamX + camWidth ||",
+            "    wy > mincamY + camHeight",
             "  ) continue;",
             "",
-            "  const startCol = Math.floor((wx - mapX) / cellSize);",
-            "  const endCol = Math.floor((wx + wWidth - mapX) / cellSize);",
-            "  const startRow = Math.floor((wy - mapY) / cellSize);",
-            "  const endRow = Math.floor((wy + wHeight - mapY) / cellSize);",
+            "  const startCol = Math.floor((wx - mincamX) / cellSize);",
+            "  const endCol = Math.floor((wx + wWidth - mincamX) / cellSize);",
+            "  const startRow = Math.floor((wy - mincamY) / cellSize);",
+            "  const endRow = Math.floor((wy + wHeight - mincamY) / cellSize);",
             "",
             "  for (let y = startRow; y <= endRow; y++) {",
             "    for (let x = startCol; x <= endCol; x++) {",
