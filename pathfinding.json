@@ -217,7 +217,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 1.0615432371589926,
+        "zoomFactor": 1,
         "windowMask": false,
         "selectedLayer": ""
       },
@@ -249,23 +249,6 @@
         {
           "angle": 0,
           "customSize": true,
-          "depth": 0.25,
-          "height": 13.25,
-          "keepRatio": true,
-          "layer": "",
-          "name": "Wall",
-          "persistentUuid": "aa62474d-930c-46cd-927f-1f5f0341e694",
-          "width": 2,
-          "x": 238,
-          "y": 150,
-          "zOrder": 3,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": true,
           "depth": 0,
           "height": 168,
           "layer": "",
@@ -282,6 +265,40 @@
               "value": "{\"tileWidth\":168,\"tileHeight\":168,\"dimX\":10,\"dimY\":1,\"layers\":[{\"id\":0,\"alpha\":1,\"tiles\":[[0,0,0,0,0,0,0,0,0,0]]}]}"
             }
           ],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 8,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Wall",
+          "persistentUuid": "b3d1e28a-01bf-4fa1-a848-0bf5e6753c7a",
+          "width": 519,
+          "x": -199,
+          "y": 0,
+          "zOrder": 4,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 8,
+          "keepRatio": true,
+          "layer": "",
+          "name": "Wall",
+          "persistentUuid": "df36c32d-4e3e-42f2-9ad4-af688e8bf2d0",
+          "width": 483,
+          "x": -163,
+          "y": 160,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
           "initialVariables": []
         }
       ],
@@ -520,78 +537,6 @@
         {
           "adaptCollisionMaskAutomatically": true,
           "assetStoreId": "",
-          "name": "Start",
-          "type": "Sprite",
-          "updateIfNotVisible": false,
-          "variables": [],
-          "effects": [],
-          "behaviors": [],
-          "animations": [
-            {
-              "name": "NewSprite",
-              "useMultipleDirections": false,
-              "directions": [
-                {
-                  "looping": false,
-                  "metadata": "{\"pskl\":{}}",
-                  "timeBetweenFrames": 0.08,
-                  "sprites": [
-                    {
-                      "hasCustomCollisionMask": true,
-                      "image": "NewSprite4",
-                      "points": [],
-                      "originPoint": {
-                        "name": "origine",
-                        "x": 0,
-                        "y": 0
-                      },
-                      "centerPoint": {
-                        "automatic": true,
-                        "name": "centre",
-                        "x": 0,
-                        "y": 0
-                      },
-                      "customCollisionMask": [
-                        [
-                          {
-                            "x": 0,
-                            "y": 0
-                          },
-                          {
-                            "x": 8,
-                            "y": 0
-                          },
-                          {
-                            "x": 8,
-                            "y": 8
-                          },
-                          {
-                            "x": 0,
-                            "y": 8
-                          }
-                        ]
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "assetStoreId": "",
-          "height": 168,
-          "name": "Grid",
-          "texture": "NewTiledSprite2",
-          "type": "TiledSpriteObject::TiledSprite",
-          "width": 300,
-          "variables": [],
-          "effects": [],
-          "behaviors": []
-        },
-        {
-          "adaptCollisionMaskAutomatically": true,
-          "assetStoreId": "",
           "name": "NewTarget",
           "type": "Sprite",
           "updateIfNotVisible": false,
@@ -680,12 +625,6 @@
           },
           {
             "objectName": "NewTarget"
-          },
-          {
-            "objectName": "Start"
-          },
-          {
-            "objectName": "Grid"
           },
           {
             "objectName": "Sfondo"
@@ -1229,11 +1168,15 @@
             "//const goalY = target.getY() + mincamY;",
             "//let goal = getGridPos(goalX, goalY, cellSize);",
             "//alert('mouseX: ' + goal[0] + ' - mouseY: ' + goal[1]);",
+            "const sfondo = runtimeScene.getObjects(\"Sfondo\")[0];",
+            "const top = sfondo.getY();",
+            "const bottom = sfondo.getY() + sfondo.getHeight();",
             "",
+            "const height = sfondo.getHeight();",
             "",
             "// === Build grid (2D numeric matrix) ===",
             "const cols = Math.floor(camWidth / cellSize);",
-            "const rows = Math.floor(camHeight / cellSize);",
+            "const rows = Math.floor(height / cellSize);",
             "",
             "const grid = Array.from({ length: rows }, () => new Array(cols).fill(0));",
             "",
@@ -1250,15 +1193,15 @@
             "  // Ignore walls outside map",
             "  if (",
             "    wx + wWidth < mincamX ||",
-            "    wy + wHeight < mincamY ||",
+            "    wy + wHeight < top ||",
             "    wx > mincamX + camWidth ||",
-            "    wy > mincamY + camHeight",
+            "    wy > bottom",
             "  ) continue;",
             "",
             "  const startCol = Math.floor((wx - mincamX) / cellSize);",
             "  const endCol = Math.floor((wx + wWidth - mincamX) / cellSize);",
-            "  const startRow = Math.floor((wy - mincamY) / cellSize);",
-            "  const endRow = Math.floor((wy + wHeight - mincamY) / cellSize);",
+            "  const startRow = Math.floor((wy - top) / cellSize);",
+            "  const endRow = Math.floor((wy + wHeight - top) / cellSize);",
             "//alert(startCol);",
             "  for (let y = startRow; y <= endRow; y++) {",
             "    for (let x = startCol; x <= endCol; x++) {",
@@ -1279,7 +1222,7 @@
             "const playerCellHeight = Math.ceil(playerHeight / cellSize);",
             "",
             "const playerX = player.getX() - mincamX;// camX - mincamX;",
-            "const playerY = player.getY() - mincamY;// camY - mincamY;",
+            "const playerY = player.getY() - top;// camY - mincamY;",
             "const start = getGridPos(playerX, playerY, cellSize);",
             "",
             "//alert('cols: ' + cols + ' - rows: ' + rows + ' - startX: ' + start[0] + ' - startY: ' + start[1] + ' - targetX: ' + goal[0] + ' - targetY: ' + goal[1] + ' - playerCellWidth: ' + playerCellWidth + ' - playerCellHeight: ' + playerCellHeight);",
@@ -1293,7 +1236,7 @@
             "",
             "  const newTarget = runtimeScene.createObject(\"NewTarget\");",
             "  newTarget.setZOrder(1100);",
-            "  newTarget.setPosition(mincamX + (goal[0] * cellSize), mincamY + (goal[1] * cellSize));",
+            "  newTarget.setPosition(mincamX + (goal[0] * cellSize), top + (goal[1] * cellSize));",
             "",
             "}",
             "//alert(playerCellWidth + ', ' + playerCellHeight);",
@@ -1303,7 +1246,7 @@
             "if (path && path.length > 0) {",
             "  const worldPath = path.map(cell => ({",
             "    x: mincamX + (cell[0] * cellSize + cellSize / 2),",
-            "    y: mincamY + (cell[1] * cellSize + cellSize / 2)",
+            "    y: top + (cell[1] * cellSize + cellSize / 2)",
             "  }));",
             "",
             "  player.getVariables().get(\"pathJson\").setString(JSON.stringify(worldPath));",
