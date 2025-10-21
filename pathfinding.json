@@ -194,6 +194,14 @@
         "name": "NewSprite9",
         "smoothed": true,
         "userAdded": false
+      },
+      {
+        "file": "assets/NewSprite10.png",
+        "kind": "image",
+        "metadata": "{\"extension\":\".png\"}",
+        "name": "NewSprite10",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -578,12 +586,12 @@
                   "sprites": [
                     {
                       "hasCustomCollisionMask": true,
-                      "image": "NewSprite8",
+                      "image": "NewSprite10",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
-                        "x": 0,
-                        "y": 0
+                        "x": 2,
+                        "y": 2
                       },
                       "centerPoint": {
                         "automatic": true,
@@ -598,16 +606,16 @@
                             "y": 0
                           },
                           {
-                            "x": 4,
+                            "x": 2,
                             "y": 0
                           },
                           {
-                            "x": 4,
-                            "y": 4
+                            "x": 2,
+                            "y": 2
                           },
                           {
                             "x": 0,
-                            "y": 4
+                            "y": 2
                           }
                         ]
                       ]
@@ -1157,7 +1165,7 @@
             "",
             "//alert(cy + ' - ' + (cy + maxDy));",
             "  // controllo verso il basso",
-            "  for (let y0 = cy; y0 <= cy + maxDy + 2; y0++ ) {",
+            "  for (let y0 = cy; y0 <= cy + maxDy; y0++ ) {",
             "    let newtarget = [cx, y0];",
             "    if (isRectValid(grid, newtarget, width, height)) {",
             "      issues.bottom = false;",
@@ -1188,11 +1196,11 @@
             "    }",
             "  }",
             "",
-            "  alert('griglia -> issues.bottom: ' + issues.bottom + ",
+            "  /*alert('griglia -> issues.bottom: ' + issues.bottom + ",
             "  ' - issues.top: ' + issues.top + ",
             "  ' - issues.left: ' + issues.left + ",
             "  ' - issues.right: ' + issues.right",
-            "  );",
+            "  );*/",
             "",
             "  return issues;",
             "}",
@@ -1209,7 +1217,7 @@
             "",
             "  if (!issues.bottom) {",
             "    // controllo verso il basso",
-            "    for (let y0 = cy; y0 <= cy + maxDy + 2; y0++ ) {",
+            "    for (let y0 = cy; y0 <= cy + maxDy; y0++ ) {",
             "      let newtarget = [cx, y0];",
             "      if (isRectValid(grid, newtarget, width, height)) {",
             "        return newtarget;",
@@ -1284,12 +1292,12 @@
             "const target = runtimeScene.createObject(\"Target\");",
             "//target.setPosition(mouseX, mouseY);",
             "target.setPosition(mincamX + mouseX, mincamY + mouseY);",
-            "target.setZOrder(1000);",
+            "//target.setZOrder(1000);",
             "",
-            "//const goalX = target.getX() + mincamX;",
-            "//const goalY = target.getY() + mincamY;",
-            "//let goal = getGridPos(goalX, goalY, cellSize);",
-            "//alert('mouseX: ' + goal[0] + ' - mouseY: ' + goal[1]);",
+            "const goalX = target.getX() - mincamX;",
+            "const goalY = target.getY() - top;",
+            "goal = getGridPos(goalX, goalY, cellSize);",
+            "alert('mouseX: ' + goal[0] + ' - mouseY: ' + goal[1]);",
             "",
             "// === Build grid (2D numeric matrix) ===",
             "const cols = Math.floor(camWidth / cellSize);",
@@ -1345,12 +1353,12 @@
             "",
             "const start = getGridPos(playerX, playerY, cellSize);",
             "",
-            "//alert('cols: ' + cols + ' - rows: ' + rows + ' - startX: ' + start[0] + ' - startY: ' + start[1] + ' - targetX: ' + goal[0] + ' - targetY: ' + goal[1] + ' - playerCellWidth: ' + playerCellWidth + ' - playerCellHeight: ' + playerCellHeight);",
+            "alert('cols: ' + cols + ' - rows: ' + rows + ' - startX: ' + start[0] + ' - startY: ' + start[1] + ' - targetX: ' + goal[0] + ' - targetY: ' + goal[1] + ' - playerCellWidth: ' + playerCellWidth + ' - playerCellHeight: ' + playerCellHeight);",
             "",
             "",
             "goal = adjustTarget(grid, goal, playerCellWidth, playerCellHeight);",
             "",
-            "//alert('nuove: ' + (goal[0] + ' - ' + goal[1]));",
+            "alert('nuove: ' + (goal[0] + ' - ' + goal[1]));",
             "",
             "const newTarget = runtimeScene.createObject(\"NewTarget\");",
             "newTarget.setZOrder(1100);",
