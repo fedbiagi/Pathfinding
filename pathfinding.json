@@ -16,7 +16,7 @@
     "pixelsRounding": false,
     "projectUuid": "4c435774-0ed7-4164-b883-1b70af0f7d52",
     "scaleMode": "linear",
-    "sizeOnStartupMode": "scaleOuter",
+    "sizeOnStartupMode": "",
     "templateSlug": "",
     "version": "1.0.0",
     "name": "Pathfinding",
@@ -186,6 +186,14 @@
         "name": "New image2",
         "smoothed": true,
         "userAdded": false
+      },
+      {
+        "file": "assets/NewSprite9.png",
+        "kind": "image",
+        "metadata": "{\"extension\":\".png\"}",
+        "name": "NewSprite9",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -217,7 +225,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 1,
+        "zoomFactor": 2.1301093426549857,
         "windowMask": false,
         "selectedLayer": ""
       },
@@ -232,15 +240,15 @@
       "instances": [
         {
           "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "keepRatio": true,
+          "customSize": true,
+          "depth": 0,
+          "height": 56,
           "layer": "",
           "name": "Player",
           "persistentUuid": "2950e447-e7f7-4c4a-97b8-ade6b711f890",
-          "width": 0,
-          "x": 218,
-          "y": 42,
+          "width": 22,
+          "x": 233,
+          "y": 96,
           "zOrder": 2,
           "numberProperties": [],
           "stringProperties": [],
@@ -250,13 +258,13 @@
           "angle": 0,
           "customSize": true,
           "depth": 0,
-          "height": 168,
+          "height": 128,
           "layer": "",
-          "name": "Sfondo",
+          "name": "Grid",
           "persistentUuid": "9f44ca41-bcaf-4815-b1f3-1c6cf325373f",
           "width": 1680,
           "x": -1360,
-          "y": 0,
+          "y": 40,
           "zOrder": 0,
           "numberProperties": [],
           "stringProperties": [
@@ -272,14 +280,13 @@
           "customSize": true,
           "depth": 1,
           "height": 8,
-          "keepRatio": true,
           "layer": "",
           "name": "Wall",
-          "persistentUuid": "b3d1e28a-01bf-4fa1-a848-0bf5e6753c7a",
-          "width": 519,
-          "x": -199,
-          "y": 0,
-          "zOrder": 4,
+          "persistentUuid": "96645d62-f6c3-4832-8048-8777aaf28b51",
+          "width": 368,
+          "x": -48,
+          "y": 79,
+          "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -288,15 +295,31 @@
           "angle": 0,
           "customSize": true,
           "depth": 1,
-          "height": 8,
+          "height": 12,
+          "layer": "",
+          "name": "Wall",
+          "persistentUuid": "a12a0416-633d-4094-86ac-cac127eeed07",
+          "width": 353,
+          "x": -33,
+          "y": 156,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 89,
           "keepRatio": true,
           "layer": "",
           "name": "Wall",
-          "persistentUuid": "df36c32d-4e3e-42f2-9ad4-af688e8bf2d0",
-          "width": 483,
-          "x": -163,
-          "y": 160,
-          "zOrder": 5,
+          "persistentUuid": "8df3b314-e7da-4a26-838f-ada4335cf729",
+          "width": 8,
+          "x": 312,
+          "y": 79,
+          "zOrder": 7,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -494,12 +517,12 @@
                   "sprites": [
                     {
                       "hasCustomCollisionMask": true,
-                      "image": "NewSprite7",
+                      "image": "NewSprite9",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
-                        "x": 0,
-                        "y": 0
+                        "x": 2,
+                        "y": 2
                       },
                       "centerPoint": {
                         "automatic": true,
@@ -514,16 +537,16 @@
                             "y": 0
                           },
                           {
-                            "x": 4,
+                            "x": 1,
                             "y": 0
                           },
                           {
-                            "x": 4,
-                            "y": 4
+                            "x": 1,
+                            "y": 1
                           },
                           {
                             "x": 0,
-                            "y": 4
+                            "y": 1
                           }
                         ]
                       ]
@@ -597,7 +620,7 @@
         },
         {
           "assetStoreId": "",
-          "name": "Sfondo",
+          "name": "Grid",
           "type": "TileMap::SimpleTileMap",
           "variables": [],
           "effects": [],
@@ -627,23 +650,92 @@
             "objectName": "NewTarget"
           },
           {
-            "objectName": "Sfondo"
+            "objectName": "Grid"
           }
         ]
       },
       "events": [
         {
           "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetCameraCenterX"
+              },
+              "parameters": [
+                "",
+                "=",
+                "SceneWindowWidth()/2",
+                "",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetCameraCenterY"
+              },
+              "parameters": [
+                "",
+                "=",
+                "SceneWindowHeight()/2",
+                "",
+                "0"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PosX"
+              },
+              "parameters": [
+                "Player",
+                "<",
+                "(SceneWindowWidth() / 2) - (Player.Width()/2)"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetCameraCenterX"
+              },
+              "parameters": [
+                "",
+                "=",
+                "Player.CenterX()",
+                "",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "disabled": true,
+          "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
           "actions": [
             {
               "type": {
-                "value": "CentreCamera"
+                "value": "SetCameraCenterY"
               },
               "parameters": [
                 "",
-                "Player",
-                "",
+                "=",
+                "Player.CenterY()",
                 "",
                 ""
               ]
@@ -1033,8 +1125,8 @@
             "  const [cx, cy] = target;",
             "",
             "  // Calcola l'angolo in alto a sinistra del rettangolo centrato sul target",
-            "  const x0 = Math.floor(cx - width / 2);",
-            "  const y0 = Math.floor(cy - height / 2);",
+            "  const x0 = Math.round(cx - width / 2);",
+            "  const y0 = Math.round(cy - height / 2);",
             "",
             "  // Controlla se il rettangolo è completamente dentro la griglia",
             "  if (x0 < 0 || y0 < 0 || x0 + width > cols || y0 + height > rows) {",
@@ -1056,34 +1148,51 @@
             "function getRectIssues(grid, target, width, height) {",
             "  const rows = grid.length;",
             "  const cols = grid[0].length;",
-            "",
             "  const [cx, cy] = target;",
             "",
-            "  const x0 = Math.floor(cx - width / 2);",
-            "  const y0 = Math.floor(cy - height / 2);",
-            "  const x1 = x0 + width - 1;",
-            "  const y1 = y0 + height - 1;",
+            "  const maxDx = Math.floor(width / 2);",
+            "  const maxDy = Math.floor(height / 2);",
             "",
-            "  const issues = { top: false, bottom: false, left: false, right: false };",
+            "  const issues = { top: true, bottom: true, left: true, right: true };",
             "",
-            "  // 🔹 Controllo uscita dalla griglia",
-            "  if (x0 < 0) issues.left = true;",
-            "  if (y0 < 0) issues.top = true;",
-            "  if (x1 >= cols) issues.right = true;",
-            "  if (y1 >= rows) issues.bottom = true;",
-            "",
-            "  // 🔹 Controllo muri",
-            "  for (let y = y0; y <= y1; y++) {",
-            "    for (let x = x0; x <= x1; x++) {",
-            "      if (y < 0 || y >= rows || x < 0 || x >= cols) continue;",
-            "      if (grid[y][x] === 1) {",
-            "        if (y === y0) issues.top = true;",
-            "        if (y === y1) issues.bottom = true;",
-            "        if (x === x0) issues.left = true;",
-            "        if (x === x1) issues.right = true;",
-            "      }",
+            "//alert(cy + ' - ' + (cy + maxDy));",
+            "  // controllo verso il basso",
+            "  for (let y0 = cy; y0 <= cy + maxDy + 2; y0++ ) {",
+            "    let newtarget = [cx, y0];",
+            "    if (isRectValid(grid, newtarget, width, height)) {",
+            "      issues.bottom = false;",
             "    }",
             "  }",
+            "",
+            "  // controllo verso l'alto",
+            "  for (let y0 = cy; y0 >= cy - maxDy; y0-- ) {",
+            "    let newtarget = [cx, y0];",
+            "    if (isRectValid(grid, newtarget, width, height)) {",
+            "      issues.top = false;",
+            "    }",
+            "  }",
+            "",
+            "  // controllo verso destra",
+            "  for (let x0 = cx; x0 <= cx + maxDx; x0++ ) {",
+            "    let newtarget = [x0, cy];",
+            "    if (isRectValid(grid, newtarget, width, height)) {",
+            "      issues.right = false;",
+            "    }",
+            "  }",
+            "",
+            "  // controllo verso sinistra",
+            "  for (let x0 = cx; x0 >= cx - maxDx; x0-- ) {",
+            "    let newtarget = [x0, cy];",
+            "    if (isRectValid(grid, newtarget, width, height)) {",
+            "      issues.left = false;",
+            "    }",
+            "  }",
+            "",
+            "  alert('griglia -> issues.bottom: ' + issues.bottom + ",
+            "  ' - issues.top: ' + issues.top + ",
+            "  ' - issues.left: ' + issues.left + ",
+            "  ' - issues.right: ' + issues.right",
+            "  );",
             "",
             "  return issues;",
             "}",
@@ -1098,37 +1207,27 @@
             "",
             "  const issues = getRectIssues(grid, [cx, cy], width, height);",
             "",
-            "  // Costruisci vettori per direzioni problematiche",
-            "  const dxOptions = [];",
-            "  if (issues.left) dxOptions.push(...Array.from({length: maxDx}, (_, i) => i + 1)); // sposta destra",
-            "  if (issues.right) dxOptions.push(...Array.from({length: maxDx}, (_, i) => -(i + 1))); // sposta sinistra",
-            "  if (dxOptions.length === 0) dxOptions.push(0);",
-            "",
-            "  const dyOptions = [];",
-            "  if (issues.top) dyOptions.push(...Array.from({length: maxDy}, (_, i) => i + 1)); // sposta giù",
-            "  if (issues.bottom) dyOptions.push(...Array.from({length: maxDy}, (_, i) => -(i + 1))); // sposta su",
-            "  if (dyOptions.length === 0) dyOptions.push(0);",
-            "",
-            "  // 🔹 Prova tutte le combinazioni di spostamento",
-            "  for (const dx of dxOptions) {",
-            "    for (const dy of dyOptions) {",
-            "      const newTarget = [cx + dx, cy + dy];",
-            "",
-            "      // Controlla che il vecchio target rimanga dentro",
-            "      const x0 = Math.floor(newTarget[0] - width / 2);",
-            "      const y0 = Math.floor(newTarget[1] - height / 2);",
-            "      const x1 = x0 + width;",
-            "      const y1 = y0 + height;",
-            "",
-            "      if (",
-            "        cx >= x0 && cx <= x1 &&",
-            "        cy >= y0 && cy <= y1 &&",
-            "        isRectValid(grid, newTarget, width, height)",
-            "      ) {",
-            "        return newTarget;",
+            "  if (!issues.bottom) {",
+            "    // controllo verso il basso",
+            "    for (let y0 = cy; y0 <= cy + maxDy + 2; y0++ ) {",
+            "      let newtarget = [cx, y0];",
+            "      if (isRectValid(grid, newtarget, width, height)) {",
+            "        return newtarget;",
             "      }",
             "    }",
             "  }",
+            "",
+            "  if (!issues.top) {",
+            "    // controllo verso l'alto",
+            "    for (let y0 = cy; y0 > cy - maxDy; y0-- ) {",
+            "      let newtarget = [cx, y0];",
+            "      if (isRectValid(grid, newtarget, width, height)) {",
+            "        return newtarget;",
+            "      }",
+            "    }",
+            "  }",
+            "",
+            "  ",
             "",
             "  // Nessuna posizione valida trovata",
             "  return target;",
@@ -1147,16 +1246,39 @@
             "const mincamY = camY - Math.floor(camHeight / 2);",
             "const maxcamY = camY + Math.floor(camHeight / 2);",
             "",
-            "//alert(mincamY);",
+            "//alert('maxCamX: ' + maxcamX);",
+            "",
+            "const sfondo = runtimeScene.getObjects(\"Grid\")[0];",
+            "const top = sfondo.getY();",
+            "const bottom = sfondo.getY() + sfondo.getHeight();",
+            "const left = sfondo.getX();",
+            "const right = sfondo.getX() + sfondo.getWidth();",
+            "const width = sfondo.getWidth();",
+            "const height = sfondo.getHeight();",
+            "",
+            "const mouseX = runtimeScene.getGame().getInputManager().getMouseX();",
+            "const mouseY = runtimeScene.getGame().getInputManager().getMouseY();",
+            "",
+            "//alert('mincamY: ' + mincamY);",
+            "//alert('top: ' + top);",
+            "//alert('bottom: ' + bottom);",
+            "//alert('height: ' + height);",
+            "//alert('(Math.floor(mouseY) + mincamY): ' + (Math.round(mouseY) + mincamY));",
+            "//alert('(Math.floor(mouseY) + mincamY - top): ' + (Math.round(mouseY) + mincamY - top));",
+            "//alert('mouseY: ' + mouseY);",
+            "//alert('mouseX: ' + mouseX);",
+            "",
+            "if ((Math.round(mouseY) + mincamY) < top || ",
+            "(Math.round(mouseY) + mincamY) > bottom || ",
+            "(Math.round(mouseX) + mincamX) > right) return;",
             "",
             "//alert(layer.getCameraWidth());",
             "",
             "//alert('MincamX: ' +  mincamX + ' - MincamY: ' + mincamY + ' - MaxcamX: ' +  maxcamX + ' - MaxcamY: ' + maxcamY + ' - camX: ' +  camX + ' - camY: ' + camY);",
             "",
-            "const mouseX = runtimeScene.getGame().getInputManager().getMouseX();",
-            "const mouseY = runtimeScene.getGame().getInputManager().getMouseY();",
+            "",
             "//let goal = getGridPos(mouseX + mincamX, mouseY + mincamY, cellSize);",
-            "let goal = getGridPos(mouseX, mouseY, cellSize);",
+            "let goal = getGridPos(Math.round(mouseX) + mincamX, (Math.round(mouseY) + mincamY - top), cellSize);",
             "",
             "// === Create a target marker ===",
             "const target = runtimeScene.createObject(\"Target\");",
@@ -1168,11 +1290,6 @@
             "//const goalY = target.getY() + mincamY;",
             "//let goal = getGridPos(goalX, goalY, cellSize);",
             "//alert('mouseX: ' + goal[0] + ' - mouseY: ' + goal[1]);",
-            "const sfondo = runtimeScene.getObjects(\"Sfondo\")[0];",
-            "const top = sfondo.getY();",
-            "const bottom = sfondo.getY() + sfondo.getHeight();",
-            "",
-            "const height = sfondo.getHeight();",
             "",
             "// === Build grid (2D numeric matrix) ===",
             "const cols = Math.floor(camWidth / cellSize);",
@@ -1218,35 +1335,36 @@
             "",
             "const playerWidth = player.getWidth();",
             "const playerHeight = player.getHeight();",
-            "const playerCellWidth = Math.ceil(playerWidth / cellSize);",
-            "const playerCellHeight = Math.ceil(playerHeight / cellSize);",
+            "const playerCellWidth = Math.floor(playerWidth / cellSize);",
+            "const playerCellHeight = Math.floor(playerHeight / cellSize);",
             "",
             "const playerX = player.getX() - mincamX;// camX - mincamX;",
             "const playerY = player.getY() - top;// camY - mincamY;",
+            "",
+            "//alert('top: ' + top + ' - player.getY(): ' + player.getY() + ' - playerY: ' + playerY);",
+            "",
             "const start = getGridPos(playerX, playerY, cellSize);",
             "",
             "//alert('cols: ' + cols + ' - rows: ' + rows + ' - startX: ' + start[0] + ' - startY: ' + start[1] + ' - targetX: ' + goal[0] + ' - targetY: ' + goal[1] + ' - playerCellWidth: ' + playerCellWidth + ' - playerCellHeight: ' + playerCellHeight);",
             "",
             "",
-            "if (!isRectValid(grid, goal, playerCellWidth, playerCellHeight)) {",
-            "  const issues = getRectIssues(grid, goal, playerCellWidth, playerCellHeight);",
-            "  goal = adjustTarget(grid, goal, playerCellWidth, playerCellHeight);",
+            "goal = adjustTarget(grid, goal, playerCellWidth, playerCellHeight);",
             "",
-            "//alert((goal[0]) + ' - ' + goal[1]);",
+            "//alert('nuove: ' + (goal[0] + ' - ' + goal[1]));",
             "",
-            "  const newTarget = runtimeScene.createObject(\"NewTarget\");",
-            "  newTarget.setZOrder(1100);",
-            "  newTarget.setPosition(mincamX + (goal[0] * cellSize), top + (goal[1] * cellSize));",
+            "const newTarget = runtimeScene.createObject(\"NewTarget\");",
+            "newTarget.setZOrder(1100);",
+            "newTarget.setPosition(mincamX + (goal[0] * cellSize), top + (goal[1] * cellSize));",
             "",
-            "}",
+            "",
             "//alert(playerCellWidth + ', ' + playerCellHeight);",
             "// === Find the path ===",
             "const path = aStarGrid(grid, start, goal, playerCellWidth, playerCellHeight);",
             "//alert(path);",
             "if (path && path.length > 0) {",
             "  const worldPath = path.map(cell => ({",
-            "    x: mincamX + (cell[0] * cellSize + cellSize / 2),",
-            "    y: top + (cell[1] * cellSize + cellSize / 2)",
+            "    x: mincamX + (cell[0] * cellSize),",
+            "    y: top + (cell[1] * cellSize)",
             "  }));",
             "",
             "  player.getVariables().get(\"pathJson\").setString(JSON.stringify(worldPath));",
@@ -1257,7 +1375,7 @@
           ],
           "parameterObjects": "",
           "useStrict": true,
-          "eventsSheetExpanded": false
+          "eventsSheetExpanded": true
         }
       ]
     }
